@@ -28,11 +28,6 @@ def generar_passphrase(num_palabras=4, longitud_numero=3):
     
     return passphrase
 
-# Función para guardar contraseñas generadas
-def guardar_contrasena(contrasena):
-    with open(archivo_contrasenas, "a") as f:
-        f.write(contrasena + "\n")
-
 # Función para verificar si la contraseña ya existe
 def es_unica(contrasena):
     if not os.path.exists(archivo_contrasenas):
@@ -40,6 +35,12 @@ def es_unica(contrasena):
     with open(archivo_contrasenas, "r") as f:
         contrasenas_existentes = f.read().splitlines()
     return contrasena not in contrasenas_existentes
+
+# Función para guardar contraseñas generadas
+def guardar_contrasena(contrasena):
+    with open(archivo_contrasenas, "a") as f:
+        f.write(contrasena + "\n")
+
 
 # Generador que solo devuelve contraseñas únicas
 def generar_passphrase_unica(num_palabras=4, longitud_numero=3):
@@ -54,4 +55,3 @@ if __name__ == "__main__":
     # Genera una passphrase única
     passphrase = generar_passphrase_unica(num_palabras=6, longitud_numero=4)  # Permite 6 palabras y número de 4 dígitos
     print(f"Tu nueva passphrase es: {passphrase}")
-
